@@ -1,0 +1,12 @@
+{
+    "name": "cucumber-js-experiments",
+    "version": "0.0.0",
+    "author" : "Sameeri Marryboyina",
+    "dependencies": {
+        "lodash": "2.4.x"
+    },
+    "devDependencies": {
+        "gulp": "3.5.x",
+        "cucumber" : "0.4.x"
+    }
+}

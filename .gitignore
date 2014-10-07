@@ -1,0 +1,9 @@
+#editor
+/.idea
+#libs
+/node_modules
+#artifacts
+npm-debug.log
+
+
+
