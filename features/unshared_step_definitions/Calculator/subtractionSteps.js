@@ -7,7 +7,4 @@ function subtractionStepDefinitions(calculator) {
     this.When(/^I subtract (.*) from (.*)$/, iSubtractNumber1FromNumber2);
 }
 
-
-
-
 module.exports = subtractionStepDefinitions;

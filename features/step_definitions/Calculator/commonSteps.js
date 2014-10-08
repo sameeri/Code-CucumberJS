@@ -4,8 +4,8 @@
 var chai = require('chai').should(),
     Calculator = require('../../../src/Calculator.js');
 
-var additionSteps = require('../../unshared_step_definitions/Calculator/addition_steps');
-var subtractionSteps = require('../../unshared_step_definitions/Calculator/subtraction_steps');
+var additionSteps = require('../../unshared_step_definitions/Calculator/additionSteps');
+var subtractionSteps = require('../../unshared_step_definitions/Calculator/subtractionSteps');
 
 function commonStepDefinitions() {
 
