@@ -35,8 +35,7 @@ function additionStepDefinitions() {
 
     function theResultShouldBe(result, callback) {
         //Assert result
-
-        var expectedResult = parseInt(calculator.result, 10);
+        var expectedResult = parseInt(result, 10);
         calculator.result.should.equal(expectedResult);
         callback();
     }
@@ -46,6 +45,13 @@ function additionStepDefinitions() {
     this.Given(/^the calculator is clear$/, theCalculatorIsClear);
 
     this.When(/^I add (\d+) and (\d+)$/, iAddNumber1AndNumber2);
+
+    this.When(/^I subtract (.*) from (.*)$/, function (num2, num1, callback) {
+
+        calculator.subtract(parseInt(num2, 10), parseInt(num1, 10));
+
+        callback();
+    });
 
     this.Then(/^the result should be (\d+)$/, theResultShouldBe);
 
