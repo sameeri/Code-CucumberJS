@@ -46,6 +46,13 @@ function additionStepDefinitions() {
 
     this.When(/^I add (\d+) and (\d+)$/, iAddNumber1AndNumber2);
 
+    this.When(/^I subtract (.*) from (.*)$/, function (num2, num1, callback) {
+
+        calculator.subtract(parseInt(num2, 10), parseInt(num1, 10));
+
+        callback();
+    });
+
     this.Then(/^the result should be (\d+)$/, theResultShouldBe);
 
 }
