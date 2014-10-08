@@ -3,9 +3,9 @@ Feature: Subtract Numbers
   I want to subtract 2 numbers
 
 Scenario Outline: Performing subtractions in a Calculator
-Given a calculator
+Given A calculator
 And the calculator is clear
-When I subtract <input1> and <input2>
+When I subtract <input2> from <input1>
 Then the result should be <result>
 Examples:
 | input1 | input2 | result |
