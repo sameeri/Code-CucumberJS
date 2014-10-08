@@ -14,14 +14,17 @@ function commonStepDefinitions() {
     function aCalculator(callback) {
         //Setup the main context object here
 
-        //We cannot do this anymore.
+        //We cannot do this anymore. We have to do it outside.
+        //calculator = new Calculator();
+
         //Why can't we? We are passing a reference. So if this changes, it should change
         //even in the other function.
 
         //Answer: You are stupid. You are passing undefined, not a function reference at the
-        //point where you call the various step definitions.
+        //point where you call the various step definitions, if you do it here. The context should
+        //be passed.
 
-        //calculator = new Calculator();
+
         callback();
     }
 
@@ -46,7 +49,9 @@ function commonStepDefinitions() {
 
     this.Then(/^the result should be (\d+)$/, theResultShouldBe);
 
-    //We have to know what all context is necessary for these steps
+    // We have to know what all context is necessary for these steps, so pass in calculator
+    // We are just following the pattern of cucumber-js. Atleast we are assuming this is what
+    // cucumber-js is doing.
     additionSteps.call(this, calculator);
     subtractionSteps.call(this, calculator);
 
