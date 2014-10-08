@@ -35,8 +35,7 @@ function additionStepDefinitions() {
 
     function theResultShouldBe(result, callback) {
         //Assert result
-
-        var expectedResult = parseInt(calculator.result, 10);
+        var expectedResult = parseInt(result, 10);
         calculator.result.should.equal(expectedResult);
         callback();
     }
