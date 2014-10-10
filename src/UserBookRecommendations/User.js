@@ -5,6 +5,6 @@ function User(name){
 
 User.prototype.hasInterests = function(interests){
     this.interests = interests;
-}
+};
 
 module.exports = User;

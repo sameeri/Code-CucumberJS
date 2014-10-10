@@ -65,7 +65,7 @@ function bookRecommendationSteps(){
             var b = {
                 name: book['Book'],
                 categories: book['Category'].split(',')
-            }
+            };
 
             books.push(b);
         });
