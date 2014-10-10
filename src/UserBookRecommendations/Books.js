@@ -3,7 +3,7 @@
 var Books = {
 
     fetch : function (){
-        //fetch from somehwhere!
+        //fetch from somewhere!
         //Return matching books.
     }
 };
