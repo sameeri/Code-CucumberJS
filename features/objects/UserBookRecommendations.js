@@ -49,10 +49,6 @@ module.exports = function (bookStub) {
     };
 
     this.whenTheUserWantsToFindBookRecommendations = function () {
-
-        //Perform action
-
-
         bookStub
             .returns(books);
 
@@ -74,4 +70,21 @@ module.exports = function (bookStub) {
         // Make assertions
         recommendations.length.should.equal(0);
     };
+
+    this.theUserHasACertainInterest = function(interest){
+        var interests = [];
+        interests.push(interest);
+        user.hasInterests(interests);
+    };
+
+    this.theUserShouldBeGivenTheFollowingRecommendation = function(recommendationsString){
+        var expectedRecommendations = recommendationsString.split(', ');
+        console.log('----expectedRecommendations----', expectedRecommendations);
+        console.log('----recommendations----', recommendations);
+
+        _.each(expectedRecommendations, function(recommendation){
+            console.log('----recommendation----', recommendation);
+            recommendations.should.include(recommendation)
+        });
+    }
 };

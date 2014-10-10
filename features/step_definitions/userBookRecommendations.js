@@ -48,6 +48,16 @@ function bookRecommendationSteps() {
         state.thenTheUserShouldNotBeRecommendedAnyBooks();
         callback();
     });
+
+    this.Given(/^the user has a certain interest (.*)$/, function (interest, callback) {
+        state.theUserHasACertainInterest(interest);
+        callback();
+    });
+
+    this.Then(/^the user should be given the following recommendation (.*)$/, function (recommendation, callback) {
+        state.theUserShouldBeGivenTheFollowingRecommendation(recommendation);
+        callback();
+    });
 }
 
 module.exports = bookRecommendationSteps;
