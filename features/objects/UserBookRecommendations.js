@@ -1,15 +1,13 @@
 var _ = require('lodash');
 
 var User = require('../../src/UserBookRecommendations/User'),
-    RecommendationEngine = require('../../src/UserBookRecommendations/RecommendationEngine'),
-    Books = require('../../src/UserBookRecommendations/Books');
+    RecommendationEngine = require('../../src/UserBookRecommendations/RecommendationEngine');
 
-module.exports = function () {
+module.exports = function (bookStub) {
     var user,
         books,
         recommendationEngine,
         recommendations;
-
     user = new User();
     recommendationEngine = new RecommendationEngine();
     this.givenAUser = function (username) {
@@ -53,9 +51,8 @@ module.exports = function () {
     this.whenTheUserWantsToFindBookRecommendations = function () {
 
         //Perform action
-        var sinon = require('sinon');
 
-        var bookStub = sinon.stub(Books, 'fetch');
+
         bookStub
             .returns(books);
 

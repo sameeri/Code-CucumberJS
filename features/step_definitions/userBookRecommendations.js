@@ -1,11 +1,16 @@
-var _ = require('lodash');
+var sinon = require('sinon');
 
 function bookRecommendationSteps() {
     var state;
+    console.log("Steps called");
+
+    var UserBookRecommendations = require('../objects/UserBookRecommendations.js');
+    var Books = require('../../src/UserBookRecommendations/Books');
+    var BookStub=sinon.stub(Books, 'fetch');
 
     this.Given(/^User Book Recommendations$/, function (callback) {
-        var UserBookRecommendations = require('../objects/UserBookRecommendations.js');
-        state = new UserBookRecommendations();
+        console.log("Called Background User Book Recommendations");
+        state = new UserBookRecommendations(BookStub);
         callback();
     });
 
