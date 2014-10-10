@@ -1,16 +1,31 @@
 // Recommendation Engine has the following dependencies
-// A guy who goes to Mongo and fetches all the books that are tagged with the User's interests
+// A guy who goes to Mongo or whatever and fetches all the books that are tagged with the User's interests
+var _ = require('lodash');
+var books = require('./Books');
 
-function RecommendationEngine(){
+function RecommendationEngine() {
 
-    function find(interests){
-        var recommendations = [];
+    function buildRecommendations(interests, availableBooks) {
+        var recommendations = _.filter(availableBooks, function matching(book){
+            var matches = _.intersection(book.categories, interests);
+            return matches.length != 0;
+        });
 
-        return recommendations;
+        return _.pluck(recommendations, 'name');
+
+    }
+        function find(interests) {
+
+            // Fetch from somewhere
+            var availableBooks = books.fetch();
+
+            //Build recommendations based on an algorithm
+            var recommendations = buildRecommendations(interests, availableBooks);
+
+            return recommendations;
+        }
+
+        this.find = find;
     }
 
-    this.find = find;
-}
-
-
-module.exports = RecommendationEngine;
+    module.exports = RecommendationEngine;

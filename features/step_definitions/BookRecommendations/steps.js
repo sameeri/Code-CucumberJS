@@ -1,8 +1,11 @@
 
-var User = require('../../../src/UserBookRecommendations/User'),
-    RecommendationEngine = require('../../../src/UserBookRecommendations/RecommendationEngine');
+var _ = require('lodash'),
+    sinon = require('sinon');
 
-var _ = require('lodash');
+var User = require('../../../src/UserBookRecommendations/User'),
+    RecommendationEngine = require('../../../src/UserBookRecommendations/RecommendationEngine'),
+    Books = require('../../../src/UserBookRecommendations/Books');
+
 
 function bookRecommendationSteps(){
 
@@ -43,7 +46,7 @@ function bookRecommendationSteps(){
            interests.push(interest['Interest']);
         });
 
-        user.hasInterests(userInterests);
+        user.hasInterests(interests);
         callback();
     });
 
@@ -67,22 +70,33 @@ function bookRecommendationSteps(){
             books.push(b);
         });
 
-
-        console.log(books);
+        sinon.stub(Books, 'fetch').returns(books);
 
         callback();
     });
 
     this.When(/^the user wants to find book recommendations$/, function (callback) {
 
+        //Perform action
+
         recommendations = recommendationEngine.find(user.interests);
-        callback.pending();
+
+        console.log('recommendations', recommendations);
+        callback();
     });
 
-    this.Then(/^the user should be recommended with the following books$/, function (table, callback) {
+    this.Then(/^the user should be recommended with the following books$/, function (expectedBooks, callback) {
 
-        recommendations.should.equal();
-        callback.pending();
+        // Make assertions
+        recommendations.length.should.equal(3);
+
+        books = [];
+
+        _.each(expectedBooks.hashes(), function(book){
+            recommendations.should.include(book['Recommendations']);
+        });
+
+        callback();
     });
 }
 
