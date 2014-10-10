@@ -6,6 +6,7 @@ var books = require('./Books');
 function RecommendationEngine() {
 
     function buildRecommendations(interests, availableBooks) {
+        console.log('----available books', availableBooks);
         var recommendations = _.filter(availableBooks, function matching(book){
             var matches = _.intersection(book.categories, interests);
             return matches.length != 0;
