@@ -26,10 +26,12 @@ function bookRecommendationSteps(){
 
     var user,
         books,
+        bookStub,
         recommendationEngine,
         recommendations;
 
     user = new User();
+    bookStub = sinon.stub(Books, 'fetch');
     recommendationEngine = new RecommendationEngine();
 
     this.Given(/^a user \"([^\"]*)\"$/, function (userName, callback) {
@@ -70,7 +72,7 @@ function bookRecommendationSteps(){
             books.push(b);
         });
 
-        sinon.stub(Books, 'fetch').returns(books);
+        bookStub.returns(books);
 
         callback();
     });
@@ -96,6 +98,18 @@ function bookRecommendationSteps(){
             recommendations.should.include(book['Recommendations']);
         });
 
+        callback();
+    });
+
+    this.Given(/^No books exist$/, function (callback) {
+        bookStub.returns(books);
+        callback();
+    });
+
+    this.Then(/^the user should not be recommended any books$/, function (callback)
+    {
+        // Make assertions
+        recommendations.length.should.equal(0);
         callback();
     });
 }

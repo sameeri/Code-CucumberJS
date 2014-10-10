@@ -5,26 +5,33 @@ Feature: Find Recommendations based on user interests
   based on my interests.
 
   Scenario: Find book recommendations for user
-  Given a user "sameeri"
-  And the user has the following interests
-  |Interest|
-  |Fiction|
-  |Adventure|
-  |Romance|
-  And the following books with categories exist
-  |Book| Category|
-  |Fiction Book|Fiction|
-  |Romance Book|Romance|
-  |Multi Book|Fiction, Adventure|
-  |Some book|Cucumber, Technology|
-  When the user wants to find book recommendations
-  Then the user should be recommended with the following books
-  |Recommendations|
-  |Fiction Book|
-  |Romance Book|
-  |Multi Book|
+    Given a user "sameeri"
+    And the user has the following interests
+      | Interest  |
+      | Fiction   |
+      | Adventure |
+      | Romance   |
+    And the following books with categories exist
+      | Book         | Category             |
+      | Fiction Book | Fiction              |
+      | Romance Book | Romance              |
+      | Multi Book   | Fiction, Adventure   |
+      | Some book    | Cucumber, Technology |
+    When the user wants to find book recommendations
+    Then the user should be recommended with the following books
+      | Recommendations |
+      | Fiction Book    |
+      | Romance Book    |
+      | Multi Book      |
 
-
+  Scenario: Error message when no books exist.
+    Given a user "sameeri"
+    And the user has the following interests
+      | Interest |
+      | Fiction  |
+    And No books exist
+    When the user wants to find book recommendations
+    Then the user should not be recommended any books
 
 
 
